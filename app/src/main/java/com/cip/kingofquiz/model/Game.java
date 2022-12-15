@@ -1,29 +1,38 @@
 package com.cip.kingofquiz.model;
 
-import java.time.LocalDate;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+
+
+@Entity
 public class Game {
-    private String ID;
-    private LocalDate date;
+    @PrimaryKey(autoGenerate = true)
+    private int ID;
+    @ColumnInfo(name = "date")
+    private String date;
+    @ColumnInfo(name = "QuestionIDs")
     private String QuestionIDs;
 
-    public Game(LocalDate date) {
+    public Game(String date) {
         this.date = date;
     }
 
-    public String getID() {
+
+    public int getID() {
         return ID;
     }
 
-    public void setID(String ID) {
+    public void setID(int ID) {
         this.ID = ID;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

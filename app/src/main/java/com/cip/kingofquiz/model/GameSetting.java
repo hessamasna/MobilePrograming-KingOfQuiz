@@ -1,10 +1,20 @@
 package com.cip.kingofquiz.model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class GameSetting {
-    private String ID;
+    @PrimaryKey(autoGenerate = true)
+    private int ID;
+    @ColumnInfo(name = "theme")
     private String theme;
+    @ColumnInfo(name = "difficulty")
     private String difficulty;
+    @ColumnInfo(name = "questionsCount")
     private int questionsCount;
+    @ColumnInfo(name = "category")
     private String category;
 
     public GameSetting() {
@@ -14,11 +24,11 @@ public class GameSetting {
         this.category = "any";
     }
 
-    public String getID() {
+    public int getID() {
         return ID;
     }
 
-    public void setID(String ID) {
+    public void setID(int ID) {
         this.ID = ID;
     }
 

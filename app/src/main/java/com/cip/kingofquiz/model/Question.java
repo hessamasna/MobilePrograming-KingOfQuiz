@@ -1,13 +1,25 @@
 package com.cip.kingofquiz.model;
 
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Question {
-    private String ID;
+    @PrimaryKey(autoGenerate = true)
+    private int ID;
+    @ColumnInfo(name = "category")
     private String category;
+    @ColumnInfo(name = "type")
     private String type;
+    @ColumnInfo(name = "difficulty")
     private String difficulty;
+    @ColumnInfo(name = "question")
     private String question;
+    @ColumnInfo(name = "correctAnswer")
     private String correctAnswer;
+    @ColumnInfo(name = "incorrectAnswers")
     private String incorrectAnswers;
 
     public Question(String category, String type, String difficulty, String question, String correctAnswer, String incorrectAnswers) {
@@ -19,11 +31,11 @@ public class Question {
         this.incorrectAnswers = incorrectAnswers;
     }
 
-    public String getID() {
+    public int getID() {
         return ID;
     }
 
-    public void setID(String ID) {
+    public void setID(int ID) {
         this.ID = ID;
     }
 

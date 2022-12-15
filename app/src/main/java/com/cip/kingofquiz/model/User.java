@@ -1,15 +1,30 @@
 package com.cip.kingofquiz.model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class User {
+    @PrimaryKey(autoGenerate = true)
     private int ID;
+    @ColumnInfo(name = "email")
     private String email;
+    @ColumnInfo(name = "password")
     private String password;
+    @ColumnInfo(name = "name")
     private String name;
+    @ColumnInfo(name = "username")
     private String username;
+    @ColumnInfo(name = "phone")
     private String phone;
+    @ColumnInfo(name = "isLoggedIn")
     private Boolean isLoggedIn;
+    @ColumnInfo(name = "score")
     private int score ;
+    @ColumnInfo(name = "settingID")
     private int settingID;
+    @ColumnInfo(name = "gameIDs")
     private String gameIDs;
 
 
