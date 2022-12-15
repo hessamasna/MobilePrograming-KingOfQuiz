@@ -28,7 +28,7 @@ public class User {
     private String gameIDs;
 
 
-    public User(String email, String password) {
+    public User(String email, String password,int settingID) {
         this.email = email;
         this.password = password;
         this.name = "";
@@ -36,7 +36,7 @@ public class User {
         this.phone = "";
         this.isLoggedIn = false;
         this.score = 0;
-        this.settingID = 0;
+        this.settingID = settingID;
         this.gameIDs = "";
     }
 

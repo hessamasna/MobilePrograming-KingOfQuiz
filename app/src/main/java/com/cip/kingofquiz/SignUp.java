@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.cip.kingofquiz.db.AppDatabase;
+import com.cip.kingofquiz.model.GameSetting;
 import com.cip.kingofquiz.model.User;
 
 public class SignUp extends AppCompatActivity {
@@ -43,8 +44,10 @@ public class SignUp extends AppCompatActivity {
 
         signUpError.setText("");
 
+        GameSetting gameSetting = new GameSetting();
+        db.gameSettingDao().insertGameSetting(gameSetting);
 
-        user = new User(emailField.getText().toString(), passField.getText().toString());
+        user = new User(emailField.getText().toString(), passField.getText().toString(),gameSetting.getID());
 
         db.userDao().insertUser(user);
 
