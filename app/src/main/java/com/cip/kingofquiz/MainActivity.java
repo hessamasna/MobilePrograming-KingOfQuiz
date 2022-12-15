@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Intent secondActivityIntent = new Intent(
-                getApplicationContext(), Login.class
+                getApplicationContext(), GameSetting.class
         );
         startActivity(secondActivityIntent);
 

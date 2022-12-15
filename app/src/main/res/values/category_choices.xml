@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="category_choices">
+        <item>Any Category</item>
+        <item>General Knowledge</item>
+        <item>Science: Computers</item>
+        <item>Science: Mathematics</item>
+        <item>Sports</item>
+        <item>History</item>
+        <item>Politics</item>
+    </string-array>
+</resources>
