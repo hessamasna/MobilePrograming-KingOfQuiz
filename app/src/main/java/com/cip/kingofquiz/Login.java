@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cip.kingofquiz.db.AppDatabase;
 import com.cip.kingofquiz.model.User;
@@ -17,6 +18,20 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        AppDatabase db = AppDatabase.getDbInstance(this.getApplicationContext());
+        User user = db.userDao().getLoggedInUser();
+
+        if (user.getLoggedIn()) {
+            Toast.makeText(this.getApplicationContext(), "Welcome: " + user.getName(), Toast.LENGTH_SHORT).show();
+
+            //todo navigate to main page
+//        Intent secondActivityIntent = new Intent(
+//                getApplicationContext(), SignUp.class
+//        );
+//        startActivity(secondActivityIntent);
+        }
+
     }
 
     public void login(View v) {
@@ -26,7 +41,7 @@ public class Login extends AppCompatActivity {
         EditText passField = (EditText) findViewById(R.id.Password_login);
         TextView loginError = (TextView) findViewById(R.id.login_error_txt);
 
-        if (emailField.getText().toString().equals("") || emailField.getText().toString().equals("")){
+        if (emailField.getText().toString().equals("") || emailField.getText().toString().equals("")) {
             loginError.setText("error: fill inputs");
 
             return;
@@ -36,12 +51,12 @@ public class Login extends AppCompatActivity {
         User user = null;
         user = db.userDao().getUserByEmail(emailField.getText().toString());
 
-        if (user == null){
+        if (user == null) {
             loginError.setText("error: we don't have this email");
             return;
         }
 
-        if (!user.getPassword().equals(passField.getText().toString())){
+        if (!user.getPassword().equals(passField.getText().toString())) {
             loginError.setText("error: wrong password");
             return;
         }
