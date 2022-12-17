@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.cip.kingofquiz.api.Api;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -15,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
         Intent secondActivityIntent = new Intent(
                 getApplicationContext(), GameSetting.class
         );
+        Api.fetchData("Easy",5,"Any Category");
         startActivity(secondActivityIntent);
 
     }

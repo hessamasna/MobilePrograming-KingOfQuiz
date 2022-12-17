@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -46,10 +47,15 @@ public class GameSetting extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+
         Spinner spinner_cat = (Spinner) findViewById(R.id.spinner_category);
         ArrayAdapter<CharSequence> adapter_cat = ArrayAdapter.createFromResource(this,
                 R.array.category_choices, android.R.layout.simple_spinner_item);
         adapter_cat.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_cat.setAdapter(adapter_cat);
+
+        EditText questionsCount = (EditText) findViewById(R.id.questionsCount);
+        questionsCount.setText("5");
+
     }
 }
