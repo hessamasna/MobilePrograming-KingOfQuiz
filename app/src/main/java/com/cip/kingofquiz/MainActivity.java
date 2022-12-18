@@ -14,11 +14,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-//        Intent secondActivityIntent = new Intent(
-//                getApplicationContext(), GameSetting.class
-//        );
-//        Api.fetchData("Easy",5,"Any Category");
-//        startActivity(secondActivityIntent);
+        Intent secondActivityIntent = new Intent(
+                getApplicationContext(), Login.class
+        );
+        //Api.fetchData("Easy",5,"Any Category");
+        startActivity(secondActivityIntent);
 
     }
 }

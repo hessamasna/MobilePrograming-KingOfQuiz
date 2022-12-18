@@ -15,7 +15,7 @@ public interface UserDao {
     @Query("SELECT * FROM user ")
     List<User> getAllUsers();
 
-    @Query("SELECT * FROM user WHERE email = :email")
+    @Query("SELECT * FROM user WHERE email LIKE :email")
     User getUserByEmail(String email);
 
     @Query("SELECT * FROM user WHERE isLoggedIn = 1")
@@ -26,4 +26,7 @@ public interface UserDao {
 
     @Update
     void update(User user);
+
+    @Query("DELETE FROM user")
+    void deleteAll();
 }

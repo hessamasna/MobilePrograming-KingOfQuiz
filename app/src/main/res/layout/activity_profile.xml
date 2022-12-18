@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F6F5F5"
     tools:context=".Profile">
 
     <RelativeLayout
@@ -28,17 +27,17 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/user" />
+                    android:layout_height="match_parent" />
             </androidx.cardview.widget.CardView>
 
-            <TextView
+            <EditText
                 android:id="@+id/profileUsername"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:text="KG Official"
+                android:textAlignment="center"
                 android:textColor="#fff"
                 android:textSize="23dp"
                 android:textStyle="bold" />
@@ -48,32 +47,35 @@
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_centerHorizontal="true"
             app:cardCornerRadius="5dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:weightSum="3"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:weightSum="3">
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        />
+                        android:layout_height="wrap_content" />
+
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        />
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -85,7 +87,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Scores"
-                        android:textColor="#000"
                         android:textSize="20dp" />
 
                     <TextView
@@ -98,23 +99,26 @@
                         android:textStyle="bold" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
 
-                        android:textColor="#000"/>
+                        android:textColor="#000" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
 
                         android:textColor="#2196F3"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -127,97 +131,94 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_marginTop="30dp"
         android:gravity="center"
-        android:layout_marginTop="30dp">
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="25dp">
+            android:layout_marginLeft="25dp"
+            android:orientation="horizontal">
+
             <ImageView
                 android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:src="@drawable/mail"
-                />
+                android:layout_height="45dp" />
 
             <EditText
                 android:id="@+id/profileEmail"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="15dp"
                 android:text="kgofficial@gmail.com"
-                android:textColor="#000"
                 android:textSize="18dp" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginLeft="25dp"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="25dp">
+            android:orientation="horizontal">
+
             <ImageView
                 android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:src="@drawable/phone"
-                />
+                android:layout_height="45dp" />
 
             <EditText
                 android:id="@+id/profilePhone"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="15dp"
                 android:text="+92345-1234567"
-                android:textColor="#000"
                 android:textSize="18dp" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginLeft="25dp"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="25dp">
+            android:orientation="horizontal">
+
             <ImageView
                 android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:src="@drawable/username"
-                />
+                android:layout_height="45dp" />
 
             <EditText
                 android:id="@+id/profileName"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="15dp"
                 android:text="Karachi- Pakistan"
-                android:textColor="#000"
                 android:textSize="18dp" />
 
         </LinearLayout>
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:layout_marginLeft="25dp">-->
-<!--            <ImageView-->
-<!--                android:layout_width="45dp"-->
-<!--                android:layout_height="45dp"-->
-<!--                />-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Show all comments"-->
-<!--                android:textColor="#000"-->
-<!--                android:textSize="18dp"-->
-<!--                android:paddingLeft="15dp"-->
-<!--                android:layout_gravity="center_vertical"/>-->
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:orientation="horizontal"-->
+        <!--            android:layout_marginTop="20dp"-->
+        <!--            android:layout_marginLeft="25dp">-->
+        <!--            <ImageView-->
+        <!--                android:layout_width="45dp"-->
+        <!--                android:layout_height="45dp"-->
+        <!--                />-->
+        <!--            <TextView-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:text="Show all comments"-->
+        <!--                android:textColor="#000"-->
+        <!--                android:textSize="18dp"-->
+        <!--                android:paddingLeft="15dp"-->
+        <!--                android:layout_gravity="center_vertical"/>-->
 
-<!--        </LinearLayout>-->
+        <!--        </LinearLayout>-->
     </LinearLayout>
 
     <Button
@@ -226,6 +227,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
+        android:onClick="updateProfile"
         android:text="Update"
         android:textSize="18dp" />
 
