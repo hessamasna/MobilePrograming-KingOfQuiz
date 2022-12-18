@@ -1,9 +1,11 @@
 package com.cip.kingofquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -20,16 +22,19 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         AppDatabase db = AppDatabase.getDbInstance(this.getApplicationContext());
+        //db.userDao().deleteAll();
         User user = db.userDao().getLoggedInUser();
 
-        if (user.getLoggedIn()) {
+        if (user != null && user.getLoggedIn()) {
             Toast.makeText(this.getApplicationContext(), "Welcome: " + user.getName(), Toast.LENGTH_SHORT).show();
-
+//            for (User allUser : db.userDao().getAllUsers()) {
+//                Log.d("TAG", "onCreate: "+allUser.getEmail());
+//            }
             //todo navigate to main page
-//        Intent secondActivityIntent = new Intent(
-//                getApplicationContext(), SignUp.class
-//        );
-//        startActivity(secondActivityIntent);
+            Intent secondActivityIntent = new Intent(
+                    getApplicationContext(), Profile.class
+            );
+            startActivity(secondActivityIntent);
         }
 
     }
@@ -67,10 +72,10 @@ public class Login extends AppCompatActivity {
         db.userDao().update(user);
 
         //todo navigate to main page
-//        Intent secondActivityIntent = new Intent(
-//                getApplicationContext(), SignUp.class
-//        );
-//        startActivity(secondActivityIntent);
+        Intent secondActivityIntent = new Intent(
+                getApplicationContext(), Profile.class
+        );
+        startActivity(secondActivityIntent);
 
     }
 
