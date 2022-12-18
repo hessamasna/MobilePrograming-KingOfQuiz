@@ -12,13 +12,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_profile);
 
-        Intent secondActivityIntent = new Intent(
-                getApplicationContext(), GameSetting.class
-        );
-        Api.fetchData("Easy",5,"Any Category");
-        startActivity(secondActivityIntent);
+//        Intent secondActivityIntent = new Intent(
+//                getApplicationContext(), GameSetting.class
+//        );
+//        Api.fetchData("Easy",5,"Any Category");
+//        startActivity(secondActivityIntent);
 
     }
 }
