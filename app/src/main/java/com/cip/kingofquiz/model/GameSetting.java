@@ -63,4 +63,15 @@ public class GameSetting {
     public void setCategory(String category) {
         this.category = category;
     }
+
+    @Override
+    public String toString() {
+        return "GameSetting{" +
+                "ID=" + ID +
+                ", theme='" + theme + '\'' +
+                ", difficulty='" + difficulty + '\'' +
+                ", questionsCount=" + questionsCount +
+                ", category='" + category + '\'' +
+                '}';
+    }
 }
