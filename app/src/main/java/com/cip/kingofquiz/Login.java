@@ -12,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cip.kingofquiz.db.AppDatabase;
+import com.cip.kingofquiz.model.GameSetting;
+import com.cip.kingofquiz.model.LoggedInUser;
 import com.cip.kingofquiz.model.User;
 
 public class Login extends AppCompatActivity {
@@ -27,12 +29,13 @@ public class Login extends AppCompatActivity {
 
         if (user != null && user.getLoggedIn()) {
             Toast.makeText(this.getApplicationContext(), "Welcome: " + user.getName(), Toast.LENGTH_SHORT).show();
-//            for (User allUser : db.userDao().getAllUsers()) {
-//                Log.d("TAG", "onCreate: "+allUser.getEmail());
-//            }
+
+            LoggedInUser.loggedInUser = new LoggedInUser(user);
+            LoggedInUser.loggedInUser.setUserGameSetting(db.gameSettingDao().getGameSetting(user.getSettingID()));
+
             //todo navigate to main page
             Intent secondActivityIntent = new Intent(
-                    getApplicationContext(), Profile.class
+                    getApplicationContext(), GameStarter.class
             );
             startActivity(secondActivityIntent);
         }
@@ -71,9 +74,12 @@ public class Login extends AppCompatActivity {
         user.setLoggedIn(true);
         db.userDao().update(user);
 
+        LoggedInUser.loggedInUser = new LoggedInUser(user);
+        LoggedInUser.loggedInUser.setUserGameSetting(db.gameSettingDao().getGameSetting(user.getSettingID()));
+
         //todo navigate to main page
         Intent secondActivityIntent = new Intent(
-                getApplicationContext(), Profile.class
+                getApplicationContext(), GameStarter.class
         );
         startActivity(secondActivityIntent);
 

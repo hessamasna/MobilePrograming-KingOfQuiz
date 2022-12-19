@@ -13,6 +13,8 @@ import com.cip.kingofquiz.db.AppDatabase;
 import com.cip.kingofquiz.model.GameSetting;
 import com.cip.kingofquiz.model.User;
 
+import java.util.List;
+
 public class SignUp extends AppCompatActivity {
 
     @Override
@@ -46,6 +48,8 @@ public class SignUp extends AppCompatActivity {
 
         GameSetting gameSetting = new GameSetting();
         db.gameSettingDao().insertGameSetting(gameSetting);
+        List<GameSetting> gameSettingDaoList = db.gameSettingDao().getAllGameSettings();
+        gameSetting = gameSettingDaoList.get(gameSettingDaoList.size()-1);
 
         user = new User(emailField.getText().toString(), passField.getText().toString(),gameSetting.getID());
 
