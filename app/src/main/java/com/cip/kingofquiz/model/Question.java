@@ -86,4 +86,17 @@ public class Question {
     public void setIncorrectAnswers(String incorrectAnswers) {
         this.incorrectAnswers = incorrectAnswers;
     }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "ID=" + ID +
+                ", category='" + category + '\'' +
+                ", type='" + type + '\'' +
+                ", difficulty='" + difficulty + '\'' +
+                ", question='" + question + '\'' +
+                ", correctAnswer='" + correctAnswer + '\'' +
+                ", incorrectAnswers='" + incorrectAnswers + '\'' +
+                '}';
+    }
 }
