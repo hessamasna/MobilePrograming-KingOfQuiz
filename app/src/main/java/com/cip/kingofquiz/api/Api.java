@@ -4,7 +4,12 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.cip.kingofquiz.model.Question;
+import com.google.gson.Gson;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -42,7 +47,10 @@ public class Api {
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 if (response.isSuccessful()){
                     String res = response.body().string();
-                    Log.d("Api response: ", res);
+                    String[] data = res.split("\"results\":");
+//                    Log.d("Api response: ", res);
+//                    Log.d("Api 2: ", data[1]);
+                    readJson(data[1].substring(0,data[1].length()-1));
                 }else {
                     //todo zamani ke rid
                 }
@@ -50,6 +58,16 @@ public class Api {
         });
 
     }
+
+    private static void readJson(String questions) {
+        Gson gson = new Gson();
+
+        Question[] questionsList = gson.fromJson(questions, Question[].class);
+        for (Question question : questionsList) {
+            Log.d("Q" ,  question.toString());
+        }
+    }
+
 
     private static String getCategoryNumber(String category) {
         String num = "";
