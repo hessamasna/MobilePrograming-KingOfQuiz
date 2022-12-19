@@ -35,6 +35,13 @@ public class GameStarter extends AppCompatActivity {
         startActivity(secondActivityIntent);
     }
 
+    public void profile(View v){
+        Intent secondActivityIntent = new Intent(
+                getApplicationContext(), Profile.class
+        );
+        startActivity(secondActivityIntent);
+    }
+
     public void gameSetting(View v){
         Intent secondActivityIntent = new Intent(
                 getApplicationContext(), GameSetting.class

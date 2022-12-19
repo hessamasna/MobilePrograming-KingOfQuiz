@@ -2,11 +2,13 @@ package com.cip.kingofquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cip.kingofquiz.db.AppDatabase;
 import com.cip.kingofquiz.model.User;
@@ -52,5 +54,12 @@ public class Profile extends AppCompatActivity {
         user.setPhone(phoneField.getText().toString());
         user.setUsername(nameField.getText().toString());
         db.userDao().update(user);
+
+        Toast.makeText(this.getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
+
+        Intent secondActivityIntent = new Intent(
+                getApplicationContext(), GameStarter.class
+        );
+        startActivity(secondActivityIntent);
     }
 }
