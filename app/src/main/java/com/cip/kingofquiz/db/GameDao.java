@@ -7,6 +7,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.cip.kingofquiz.model.Game;
+import com.cip.kingofquiz.model.Question;
 
 import java.util.List;
 
@@ -16,4 +17,12 @@ public interface GameDao {
     @Query("SELECT * FROM game ")
     List<Game> getAllGames();
 
+    @Query("SELECT id FROM game ORDER BY id DESC LIMIT 1; ")
+    int getLastGameId();
+
+    @Insert
+    void insertGame(Game... games);
+
+    @Query("DELETE FROM game")
+    void deleteAll();
 }

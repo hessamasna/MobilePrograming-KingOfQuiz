@@ -119,4 +119,20 @@ public class User {
     public void setGameIDs(String gameIDs) {
         this.gameIDs = gameIDs;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "ID=" + ID +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", phone='" + phone + '\'' +
+                ", isLoggedIn=" + isLoggedIn +
+                ", score=" + score +
+                ", settingID=" + settingID +
+                ", gameIDs='" + gameIDs + '\'' +
+                '}';
+    }
 }

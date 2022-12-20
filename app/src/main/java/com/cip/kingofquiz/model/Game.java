@@ -43,4 +43,13 @@ public class Game {
     public void setQuestionIDs(String questionIDs) {
         QuestionIDs = questionIDs;
     }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "ID=" + ID +
+                ", date='" + date + '\'' +
+                ", QuestionIDs='" + QuestionIDs + '\'' +
+                '}';
+    }
 }

@@ -1,18 +1,19 @@
 package com.cip.kingofquiz.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LoggedInUser {
     public static LoggedInUser loggedInUser;
     private User user;
     private Game currentGame ;
-    private ArrayList<Question> currentQuestion;
+    private Question[] currentQuestion;
     private GameSetting userGameSetting;
 
     public LoggedInUser(User user) {
         this.user = user;
         this.currentGame = null;
-        this.currentQuestion = new ArrayList<>();
+        this.currentQuestion = null;
         this.userGameSetting = null;
     }
 
@@ -40,11 +41,11 @@ public class LoggedInUser {
         this.currentGame = currentGame;
     }
 
-    public ArrayList<Question> getCurrentQuestion() {
+    public Question[] getCurrentQuestion() {
         return currentQuestion;
     }
 
-    public void setCurrentQuestion(ArrayList<Question> currentQuestion) {
+    public void setCurrentQuestion(Question[] currentQuestion) {
         this.currentQuestion = currentQuestion;
     }
 

@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.cip.kingofquiz.api.Api;
 import com.cip.kingofquiz.db.AppDatabase;
+import com.cip.kingofquiz.model.Question;
 import com.cip.kingofquiz.model.User;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,13 +22,18 @@ public class MainActivity extends AppCompatActivity {
 
 //        db.userDao().deleteAll();
 //        db.gameSettingDao().deleteAll();
+//        db.questionDao().deleteAll();
+//        db.gameDao().deleteAll();
 
 
 //        for (User allUser : db.userDao().getAllUsers()) {
 //            Log.d("TAG", "onCreate: "+allUser.getEmail());
 //        }
 
-        Api.fetchData("Easy",5,"Any Category");
+//        for (Question question : db.questionDao().getAllQuestions()) {
+//            Log.d("TAG", "onCreate: "+ question.getID());
+//        }
+
 
         Intent secondActivityIntent = new Intent(
                 getApplicationContext(), Login.class
