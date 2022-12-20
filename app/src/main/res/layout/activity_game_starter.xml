@@ -7,6 +7,17 @@
     tools:context=".GameStarter">
 
     <Button
+        android:id="@+id/profile_btn"
+        android:layout_width="237dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="16dp"
+        android:onClick="profile"
+        android:text="profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/GameSetting_btn" />
+
+    <Button
         android:id="@+id/GameSetting_btn"
         android:layout_width="237dp"
         android:layout_height="46dp"
@@ -26,7 +37,7 @@
         android:text="Log out"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Profile_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/Scoreboard_btn" />
 
     <Button
         android:id="@+id/StartGmae_btn"
@@ -40,13 +51,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/Profile_btn"
+        android:id="@+id/Scoreboard_btn"
         android:layout_width="237dp"
         android:layout_height="46dp"
         android:layout_marginTop="16dp"
-        android:onClick="profile"
-        android:text="profile"
+        android:onClick="scoreboard"
+        android:text="Scoreboard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/GameSetting_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_btn" />
 </androidx.constraintlayout.widget.ConstraintLayout>
