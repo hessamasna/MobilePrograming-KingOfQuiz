@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.cip.kingofquiz.adapter.ScoreboardAdapter;
 import com.cip.kingofquiz.db.AppDatabase;
@@ -25,5 +27,12 @@ public class ScoreBoard extends AppCompatActivity {
 
         ScoreboardAdapter scoreboardAdapter = new ScoreboardAdapter(this, db.userDao().getAllUsers() ,db);
         recyclerView.setAdapter(scoreboardAdapter);
+    }
+
+    public void goToStarter(View view){
+        Intent secondActivityIntent = new Intent(
+                getApplicationContext(), GameStarter.class
+        );
+        startActivity(secondActivityIntent);
     }
 }

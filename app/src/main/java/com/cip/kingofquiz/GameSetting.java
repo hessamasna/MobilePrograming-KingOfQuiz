@@ -121,4 +121,11 @@ public class GameSetting extends AppCompatActivity {
 
         return position;
     }
+
+    public void goToStarter(View view){
+        Intent secondActivityIntent = new Intent(
+                getApplicationContext(), GameStarter.class
+        );
+        startActivity(secondActivityIntent);
+    }
 }
