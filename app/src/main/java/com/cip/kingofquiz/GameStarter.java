@@ -3,7 +3,10 @@ package com.cip.kingofquiz;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -61,8 +64,14 @@ public class GameStarter extends AppCompatActivity {
     }
 
     public void startGame(View v) {
+        ConnectivityManager cm = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo nInfo = cm.getActiveNetworkInfo();
+        boolean connected = nInfo != null && nInfo.isAvailable() && nInfo.isConnected();
+
+
         AppDatabase db = AppDatabase.getDbInstance(this.getApplicationContext());
         com.cip.kingofquiz.model.GameSetting gameSetting = LoggedInUser.loggedInUser.getUserGameSetting();
+
 
         Api.fetchData(gameSetting.getDifficulty(), gameSetting.getQuestionsCount(), gameSetting.getCategory(), db);
 

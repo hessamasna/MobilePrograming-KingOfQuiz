@@ -2,10 +2,14 @@ package com.cip.kingofquiz.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.cip.kingofquiz.R;
 import com.cip.kingofquiz.api.Api;
 import com.cip.kingofquiz.db.AppDatabase;
+import com.cip.kingofquiz.model.LoggedInUser;
 import com.cip.kingofquiz.model.Question;
 import com.google.gson.Gson;
 
@@ -45,10 +50,30 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
         Api.QuestionAPI question = questionArrayList.get(position);
         holder.setData(question);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                showPopup(v, questionArrayList.get(position));
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton radioButton = (RadioButton) holder.itemView.findViewById(checkedId);
+
+                if (radioButton.getText().equals(question.getCorrect_answer_API())) {
+                    LoggedInUser.loggedInUser.getUser().setScore(calculateScore(3, question.getDifficulty_API()) + LoggedInUser.loggedInUser.getUser().getScore());
+                    holder.question_answer.setText("You answered correctly ✌️");
+                    holder.question_answer.setTextColor(Color.parseColor("#4CBB17"));
+                    radioButton.setTextColor(Color.parseColor("#4CBB17"));
+
+                } else {
+                    LoggedInUser.loggedInUser.getUser().setScore(calculateScore(-1, question.getDifficulty_API()) + LoggedInUser.loggedInUser.getUser().getScore());
+                    holder.question_answer.setText("You guessed wrong 😫,Correct answer is : " + question.getCorrect_answer_API());
+                    holder.question_answer.setTextColor(Color.parseColor("#960019"));
+                    radioButton.setTextColor(Color.parseColor("#960019"));
+                }
+
+                db.userDao().update(LoggedInUser.loggedInUser.getUser());
+
+                holder.radioButton1.setEnabled(false);
+                holder.radioButton2.setEnabled(false);
+                holder.radioButton3.setEnabled(false);
+                holder.radioButton4.setEnabled(false);
             }
         });
     }
@@ -62,22 +87,25 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
 
     class QuestionHolder extends RecyclerView.ViewHolder {
 
-        private TextView Question_textView;
-        private RadioButton radioButton1,radioButton2,radioButton3,radioButton4;
+        private TextView Question_textView, question_answer;
+        private RadioButton radioButton1, radioButton2, radioButton3, radioButton4;
+        private RadioGroup radioGroup;
 
 
         public QuestionHolder(@NonNull View itemView) {
             super(itemView);
             Question_textView = itemView.findViewById(R.id.Question_textView);
+            question_answer = itemView.findViewById(R.id.question_answer);
             radioButton1 = itemView.findViewById(R.id.radioButton1);
             radioButton2 = itemView.findViewById(R.id.radioButton2);
             radioButton3 = itemView.findViewById(R.id.radioButton3);
             radioButton4 = itemView.findViewById(R.id.radioButton4);
-
+            radioGroup = itemView.findViewById(R.id.RadioGroup);
         }
 
         public void setData(Api.QuestionAPI question) {
             Question_textView.setText(question.getQuestion_API());
+            question_answer.setText("");
 
             radioButton1.setText(question.getCorrect_answer_API());
             radioButton2.setText(question.getIncorrect_answers_API().get(0));
@@ -86,55 +114,17 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
         }
     }
 
-    public void showPopup(View v, Api.QuestionAPI question) {
-//        TextView courseName;
-//        TextView courseTime;
-//        TextView courseExam;
-//        Button saveBtn;
-//        Button cancelBtn;
-//
-//        Dialog myDialog = new Dialog(context);
-//        myDialog.setContentView(R.layout.activity_popup);
-//
-//        courseName = (TextView) myDialog.findViewById(R.id.courseName);
-//        courseTime = (TextView) myDialog.findViewById(R.id.courseTime);
-//        courseExam = (TextView) myDialog.findViewById(R.id.courseExam);
-//        cancelBtn = (Button) myDialog.findViewById(R.id.cancelBtn);
-//        saveBtn = (Button) myDialog.findViewById(R.id.saveBtn);
-//        courseName.setText(course.getName());
-//        courseExam.setText(course.getExam_time());
-//        courseTime.setText(course.getInfo());
-//
-//        cancelBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                myDialog.dismiss();
-//            }
-//        });
-//
-//        saveBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (db.courseDao().checkCourse(course.uid)) {
-//                    Toast.makeText(context, "قبلا اضافه شده است", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    if (!checkCourseDate(course)) {
-//                        Toast.makeText(context, "تداخل زمانی وجود دارد", Toast.LENGTH_SHORT).show();
-//                    } else {
-//                        Toast.makeText(context, "اضافه شد»" + course.getName(), Toast.LENGTH_SHORT).show();
-//
-//                        course.setHasCourse(true);
-//                        db.courseDao().update(course);
-//                        myDialog.dismiss();
-//                    }
-//
-//                }
-//
-//            }
-//        });
-//
-//
-//        myDialog.show();
+    private int calculateScore(int mainScore, String difficulty) {
+        if (difficulty.toLowerCase().equals("easy")) {
+            return mainScore;
+        } else if (difficulty.toLowerCase().equals("medium")) {
+            return mainScore * 2;
+        } else if (difficulty.toLowerCase().equals("hard")) {
+            return mainScore * 3;
+        } else {
+            return mainScore;
+        }
     }
+
 
 }
