@@ -3,6 +3,7 @@ package com.cip.kingofquiz.adapter;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,12 +79,21 @@ public class ScoreboardAdapter extends RecyclerView.Adapter<ScoreboardAdapter.Sc
             position ++;
             if (position == 1) {
                 itemView.setBackgroundResource(R.drawable.first_man);
+                scoreboardUsername.setTextColor(Color.parseColor("#000000"));
+                scoreboardScore.setTextColor(Color.parseColor("#000000"));
+                scoreboardRank.setTextColor(Color.parseColor("#000000"));
             }
             else if (position == 2) {
                 itemView.setBackgroundResource(R.drawable.second_one);
+                scoreboardUsername.setTextColor(Color.parseColor("#000000"));
+                scoreboardScore.setTextColor(Color.parseColor("#000000"));
+                scoreboardRank.setTextColor(Color.parseColor("#000000"));
             }
             else if (position == 3) {
                 itemView.setBackgroundResource(R.drawable.third_guy);
+                scoreboardUsername.setTextColor(Color.parseColor("#000000"));
+                scoreboardScore.setTextColor(Color.parseColor("#000000"));
+                scoreboardRank.setTextColor(Color.parseColor("#000000"));
             }
             scoreboardUsername.setText(user.getEmail());
             scoreboardScore.setText("" + user.getScore());
