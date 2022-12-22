@@ -1,5 +1,7 @@
 package com.cip.kingofquiz.model;
 
+import com.cip.kingofquiz.api.Api;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +9,7 @@ public class LoggedInUser {
     public static LoggedInUser loggedInUser;
     private User user;
     private Game currentGame ;
-    private Question[] currentQuestion;
+    private Api.QuestionAPI[] currentQuestion;
     private GameSetting userGameSetting;
 
     public LoggedInUser(User user) {
@@ -41,11 +43,11 @@ public class LoggedInUser {
         this.currentGame = currentGame;
     }
 
-    public Question[] getCurrentQuestion() {
+    public Api.QuestionAPI[] getCurrentQuestion() {
         return currentQuestion;
     }
 
-    public void setCurrentQuestion(Question[] currentQuestion) {
+    public void setCurrentQuestion(Api.QuestionAPI[] currentQuestion) {
         this.currentQuestion = currentQuestion;
     }
 

@@ -5,12 +5,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cip.kingofquiz.R;
+import com.cip.kingofquiz.api.Api;
 import com.cip.kingofquiz.db.AppDatabase;
 import com.cip.kingofquiz.model.Question;
 import com.google.gson.Gson;
@@ -20,11 +22,11 @@ import java.util.List;
 public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.QuestionHolder> {
 
     private Context context;
-    private List<Question> questionArrayList;
+    private List<Api.QuestionAPI> questionArrayList;
     private AppDatabase db;
 
 
-    public QuestionAdapter(Context context, List<Question> questionArrayList, AppDatabase db) {
+    public QuestionAdapter(Context context, List<Api.QuestionAPI> questionArrayList, AppDatabase db) {
         this.context = context;
         this.questionArrayList = questionArrayList;
         this.db = db;
@@ -40,19 +42,13 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
 
     @Override
     public void onBindViewHolder(@NonNull QuestionHolder holder, @SuppressLint("RecyclerView") int position) {
-        Question question = questionArrayList.get(position);
+        Api.QuestionAPI question = questionArrayList.get(position);
         holder.setData(question);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-//                Toast.makeText(context, "clicked" + courseArrayList.get(position).getName(), Toast.LENGTH_SHORT).show();
-//                Course clickedCourse = courseArrayList.get(position);
-//                clickedCourse.setHasCourse(true);
-//                db.courseDao().update(clickedCourse);
                 showPopup(v, questionArrayList.get(position));
-
             }
         });
     }
@@ -67,31 +63,30 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
     class QuestionHolder extends RecyclerView.ViewHolder {
 
         private TextView Question_textView;
+        private RadioButton radioButton1,radioButton2,radioButton3,radioButton4;
 
 
         public QuestionHolder(@NonNull View itemView) {
             super(itemView);
             Question_textView = itemView.findViewById(R.id.Question_textView);
-//            course_time_1 = itemView.findViewById(R.id.course_time_1);
-//            course_time_2 = itemView.findViewById(R.id.course_time_2);
-//            course_instructor = itemView.findViewById(R.id.course_instructor);
-//            course_units = itemView.findViewById(R.id.course_units);
+            radioButton1 = itemView.findViewById(R.id.radioButton1);
+            radioButton2 = itemView.findViewById(R.id.radioButton2);
+            radioButton3 = itemView.findViewById(R.id.radioButton3);
+            radioButton4 = itemView.findViewById(R.id.radioButton4);
+
         }
 
-        public void setData(Question question) {
-            Gson gson = new Gson();
-//            CourseTime[] courseTimes = gson.fromJson(String.valueOf(course.getClass_times()), CourseTime[].class);
-//
-//
-            Question_textView.setText(question.getQuestion());
-//            course_time_1.setText(courseTimes[0].getStart());
-//            course_time_2.setText(courseTimes[0].getEnd());
-//            course_instructor.setText(course.getInstructor());
-//            course_units.setText(Integer.toString(course.getUnits()));
+        public void setData(Api.QuestionAPI question) {
+            Question_textView.setText(question.getQuestion_API());
+
+            radioButton1.setText(question.getCorrect_answer_API());
+            radioButton2.setText(question.getIncorrect_answers_API().get(0));
+            radioButton3.setText(question.getIncorrect_answers_API().get(1));
+            radioButton4.setText(question.getIncorrect_answers_API().get(2));
         }
     }
 
-    public void showPopup(View v, Question question) {
+    public void showPopup(View v, Api.QuestionAPI question) {
 //        TextView courseName;
 //        TextView courseTime;
 //        TextView courseExam;
@@ -142,31 +137,4 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
 //        myDialog.show();
     }
 
-//    private boolean checkCourseDate(Q crs) {
-//        Gson gson = new Gson();
-//        List<Course> courses = db.courseDao().selectHasCourse();
-//
-//        if (courses.size() == 0)
-//            return true;
-//
-//        CourseTime[] currentCourseTimes = gson.fromJson(String.valueOf(crs.getClass_times()), CourseTime[].class);
-//
-//        for (CourseTime currentCourseTime : currentCourseTimes) {
-//            for (Course course : courses) {
-//                CourseTime[] courseTimes = gson.fromJson(String.valueOf(course.getClass_times()), CourseTime[].class);
-//                for (CourseTime courseTime : courseTimes) {
-//                    if (courseTime.getDay().equals(currentCourseTime.getDay())) {
-//                        if (Double.parseDouble(courseTime.getStart()) < Double.parseDouble(currentCourseTime.getStart()) && Double.parseDouble(courseTime.getEnd()) > Double.parseDouble(currentCourseTime.getStart())) {
-//                            return false;
-//                        }
-//                        if (Double.parseDouble(courseTime.getStart()) < Double.parseDouble(currentCourseTime.getEnd()) && Double.parseDouble(courseTime.getEnd()) > Double.parseDouble(currentCourseTime.getEnd())) {
-//                            return false;
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//
-//        return true;
-//    }
 }

@@ -3,6 +3,8 @@ package com.cip.kingofquiz.api;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.PrimaryKey;
 
 import com.cip.kingofquiz.db.AppDatabase;
 import com.cip.kingofquiz.model.Game;
@@ -11,12 +13,10 @@ import com.cip.kingofquiz.model.Question;
 import com.cip.kingofquiz.model.User;
 import com.google.gson.Gson;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Locale;
+import java.util.ArrayList;
+
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -70,10 +70,10 @@ public class Api {
         Gson gson = new Gson();
         Game game = new Game(LocalDate.now().toString());
 
-        Question[] questionsList = gson.fromJson(questions, Question[].class);
-        for (Question question : questionsList) {
+        QuestionAPI[] questionsList = gson.fromJson(questions, QuestionAPI[].class);
+        for (QuestionAPI question : questionsList) {
             Log.d("Q", question.toString());
-            Question questionTemp = new Question(question.getCategory(), question.getType(), question.getDifficulty(), question.getQuestion(), question.getCorrectAnswer(), question.getIncorrectAnswers());
+            Question questionTemp = new Question(question.getCategory_API(), question.getType_API(), question.getDifficulty_API(), question.getQuestion_API(), question.getCorrect_answer_API(), question.getIncorrect_answers_API_string());
             db.questionDao().insertQuestion(questionTemp);
             game.setQuestionIDs(db.questionDao().getLastQuestionId() + "%" + game.getQuestionIDs());
 //            Log.d("lastQuestion ID", ""+ db.questionDao().getLastQuestionId());
@@ -126,4 +126,80 @@ public class Api {
         return num;
     }
 
+    public class QuestionAPI {
+        private String category;
+        private String type;
+        private String difficulty;
+        private String question;
+        private String correct_answer;
+        private ArrayList<String> incorrect_answers;
+
+        public String getCategory_API() {
+            return category;
+        }
+
+        public void setCategory_API(String category) {
+            this.category = category;
+        }
+
+        public String getType_API() {
+            return type;
+        }
+
+        public void setType_API(String type) {
+            this.type = type;
+        }
+
+        public String getDifficulty_API() {
+            return difficulty;
+        }
+
+        public void setDifficulty_API(String difficulty) {
+            this.difficulty = difficulty;
+        }
+
+        public String getQuestion_API() {
+            return question;
+        }
+
+        public void setQuestion_API(String question) {
+            this.question = question;
+        }
+
+        public String getCorrect_answer_API() {
+            return correct_answer;
+        }
+
+        public void setCorrect_answer_API(String correct_answer) {
+            this.correct_answer = correct_answer;
+        }
+
+        public ArrayList<String> getIncorrect_answers_API() {
+            return incorrect_answers;
+        }
+
+        public String getIncorrect_answers_API_string() {
+            String string = "";
+            for (String incorrect_answer : incorrect_answers) {
+                string += incorrect_answer + "%";
+            }
+            return string;
+        }
+
+        public void setIncorrect_answers_API(ArrayList<String> incorrect_answers) {
+            this.incorrect_answers = incorrect_answers;
+        }
+
+        @Override
+        public String toString() {
+            return "QuestionAPI{" +
+                    "category='" + category + '\'' +
+                    ", type='" + type + '\'' +
+                    ", difficulty='" + difficulty + '\'' +
+                    ", question='" + question + '\'' +
+                    ", correct_answer='" + correct_answer + '\'' +
+                    ", incorrect_answers=" + incorrect_answers +
+                    '}';
+        }
+    }
 }
