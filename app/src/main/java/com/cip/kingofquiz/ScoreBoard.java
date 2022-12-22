@@ -25,7 +25,7 @@ public class ScoreBoard extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.scoreboardRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-        ScoreboardAdapter scoreboardAdapter = new ScoreboardAdapter(this, db.userDao().getAllUsers() ,db);
+        ScoreboardAdapter scoreboardAdapter = new ScoreboardAdapter(this, db.userDao().getUserByScoreOrder() ,db);
         recyclerView.setAdapter(scoreboardAdapter);
     }
 

@@ -76,8 +76,10 @@ public class Api {
             Question questionTemp = new Question(question.getCategory_API(), question.getType_API(), question.getDifficulty_API(), question.getQuestion_API(), question.getCorrect_answer_API(), question.getIncorrect_answers_API_string());
             db.questionDao().insertQuestion(questionTemp);
             game.setQuestionIDs(db.questionDao().getLastQuestionId() + "%" + game.getQuestionIDs());
+
 //            Log.d("lastQuestion ID", ""+ db.questionDao().getLastQuestionId());
         }
+        game.setQuestionResponse(questions);
         db.gameDao().insertGame(game);
         game.setID(db.gameDao().getLastGameId());
         LoggedInUser.loggedInUser.setCurrentGame(game);

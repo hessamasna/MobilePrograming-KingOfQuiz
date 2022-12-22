@@ -14,6 +14,8 @@ public class Game {
     private String date;
     @ColumnInfo(name = "QuestionIDs")
     private String QuestionIDs;
+    @ColumnInfo(name = "QuestionResponse")
+    private String QuestionResponse;
 
     public Game(String date) {
         this.date = date;
@@ -42,6 +44,14 @@ public class Game {
 
     public void setQuestionIDs(String questionIDs) {
         QuestionIDs = questionIDs;
+    }
+
+    public String getQuestionResponse() {
+        return QuestionResponse;
+    }
+
+    public void setQuestionResponse(String questionResponse) {
+        QuestionResponse = questionResponse;
     }
 
     @Override

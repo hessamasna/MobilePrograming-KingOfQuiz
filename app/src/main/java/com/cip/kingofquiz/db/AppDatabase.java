@@ -12,7 +12,7 @@ import com.cip.kingofquiz.model.GameSetting;
 import com.cip.kingofquiz.model.Question;
 import com.cip.kingofquiz.model.User;
 
-@Database(entities = {Game.class, GameSetting.class, Question.class, User.class}, version = 1)
+@Database(entities = {Game.class, GameSetting.class, Question.class, User.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract GameDao gameDao();

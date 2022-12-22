@@ -21,6 +21,13 @@ public interface UserDao {
     @Query("SELECT * FROM user WHERE isLoggedIn = 1")
     User getLoggedInUser();
 
+    @Query("SELECT * FROM user ORDER BY score DESC LIMIT 1; ")
+    User getMVP();
+
+
+    @Query("SELECT * FROM user ORDER BY score DESC; ")
+    List<User> getUserByScoreOrder();
+
     @Insert
     void insertUser(User... Users);
 
