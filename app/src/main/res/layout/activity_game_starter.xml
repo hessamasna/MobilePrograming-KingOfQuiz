@@ -43,12 +43,12 @@
         android:id="@+id/StartGmae_btn"
         android:layout_width="237dp"
         android:layout_height="46dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="32dp"
         android:onClick="startGame"
         android:text="Start game"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/MVP_textview" />
 
     <Button
         android:id="@+id/Scoreboard_btn"
@@ -60,4 +60,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_btn" />
+
+    <TextView
+        android:id="@+id/MVP_textview"
+        android:layout_width="233dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="32dp"
+        android:textAlignment="center"
+        android:textColor="#FF0303"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

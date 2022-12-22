@@ -3,7 +3,12 @@
     android:shape="rectangle"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <!--Adjust the values as per your requirement-->
+    <corners
+        android:bottomLeftRadius="10dp"
+        android:bottomRightRadius="10dp"
+        android:topLeftRadius="10dp"
+        android:topRightRadius="10dp"/>
     <solid
-        android:color="#FFEB3B"/>
+        android:color="#E4D124"/>
 
 </shape>
