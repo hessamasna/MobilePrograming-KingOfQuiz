@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cip.kingofquiz.db.AppDatabase;
+import com.cip.kingofquiz.model.LoggedInUser;
 import com.cip.kingofquiz.model.User;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -42,7 +43,7 @@ public class Profile extends AppCompatActivity {
     public void updateProfile(View v){
 
         AppDatabase db = AppDatabase.getDbInstance(this.getApplicationContext());
-        User user = db.userDao().getLoggedInUser();
+        User user = LoggedInUser.loggedInUser.getUser();
 
         EditText name = (EditText) findViewById(R.id.profileUsername);
         EditText emailField = (EditText) findViewById(R.id.profileEmail);
@@ -53,6 +54,7 @@ public class Profile extends AppCompatActivity {
         user.setEmail(emailField.getText().toString());
         user.setPhone(phoneField.getText().toString());
         user.setUsername(nameField.getText().toString());
+
         db.userDao().update(user);
 
         Toast.makeText(this.getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
