@@ -62,4 +62,11 @@ public class Profile extends AppCompatActivity {
         );
         startActivity(secondActivityIntent);
     }
+
+    public void goToStarter(View view){
+        Intent secondActivityIntent = new Intent(
+                getApplicationContext(), GameStarter.class
+        );
+        startActivity(secondActivityIntent);
+    }
 }
