@@ -3,6 +3,7 @@ package com.cip.kingofquiz;
 import static java.time.temporal.ChronoUnit.DAYS;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -42,6 +43,14 @@ public class GameStarter extends AppCompatActivity {
         } else {
             mvp.setText("\"" + mvpUser.getEmail() + "\" is the Game Master 🫅🤴");
         }
+
+        Log.d("themeeeee", "onCreate: " + LoggedInUser.loggedInUser.getUserGameSetting().getTheme());
+        if (LoggedInUser.loggedInUser.getUserGameSetting().getTheme().equals("light")) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+
     }
 
     public void logout(View v) {

@@ -43,6 +43,7 @@ public class GameSetting extends AppCompatActivity {
         gameSetting.setDifficulty(spinnerDifficulty.getSelectedItem().toString());
         gameSetting.setQuestionsCount(Integer.parseInt(questionsCount.getText().toString()));
         db.gameSettingDao().update(gameSetting);
+
         Toast.makeText(this.getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
 
         Intent secondActivityIntent = new Intent(
@@ -54,12 +55,23 @@ public class GameSetting extends AppCompatActivity {
 
     public void changeTheme(View v) {
         //todo should change UI
+        AppDatabase db = AppDatabase.getDbInstance(this.getApplicationContext());
         CheckBox themeSwitch = (CheckBox) findViewById(R.id.switch_theme);
+        com.cip.kingofquiz.model.GameSetting gameSetting = LoggedInUser.loggedInUser.getUserGameSetting();
+
 
         if (themeSwitch.isChecked()) {
+            gameSetting.setTheme("dark");
+            LoggedInUser.loggedInUser.getUserGameSetting().setTheme("dark");
+            db.gameSettingDao().update(gameSetting);
+
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             themeSwitch.setChecked(true);
         } else {
+            gameSetting.setTheme("light");
+            LoggedInUser.loggedInUser.getUserGameSetting().setTheme("light");
+            db.gameSettingDao().update(gameSetting);
+
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             themeSwitch.setChecked(false);
         }
@@ -89,14 +101,12 @@ public class GameSetting extends AppCompatActivity {
         questionsCount.setText("" + LoggedInUser.loggedInUser.getUserGameSetting().getQuestionsCount());
 
         CheckBox themeSwitch = (CheckBox) findViewById(R.id.switch_theme);
-//
-//        if (LoggedInUser.loggedInUser.getUserGameSetting().getTheme() == "light") {
-//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-//            themeSwitch.setChecked(false);
-//        } else {
-//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-//            themeSwitch.setChecked(true);
-//        }
+
+        if (LoggedInUser.loggedInUser.getUserGameSetting().getTheme().equals("light")) {
+            themeSwitch.setChecked(false);
+        } else {
+            themeSwitch.setChecked(true);
+        }
 
     }
 
@@ -122,7 +132,7 @@ public class GameSetting extends AppCompatActivity {
         return position;
     }
 
-    public void goToStarter(View view){
+    public void goToStarter(View view) {
         Intent secondActivityIntent = new Intent(
                 getApplicationContext(), GameStarter.class
         );
