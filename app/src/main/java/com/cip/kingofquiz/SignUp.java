@@ -31,7 +31,7 @@ public class SignUp extends AppCompatActivity {
         TextView signUpError = (TextView) findViewById(R.id.SignUp_error_txt);
 
         if (emailField.getText().toString().equals("") || emailField.getText().toString().equals("")){
-            signUpError.setText("error: fill inputs");
+            signUpError.setText("ERROR: FILL INPUTS");
             return;
         }
 
@@ -40,7 +40,7 @@ public class SignUp extends AppCompatActivity {
         user = db.userDao().getUserByEmail(emailField.getText().toString());
 
         if (user != null) {
-            signUpError.setText("error: already signUp");
+            signUpError.setText("ERROR: ALREADY SIGNUP");
             return;
         }
 

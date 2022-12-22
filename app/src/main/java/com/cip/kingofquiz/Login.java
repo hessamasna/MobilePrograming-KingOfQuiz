@@ -50,7 +50,7 @@ public class Login extends AppCompatActivity {
         TextView loginError = (TextView) findViewById(R.id.login_error_txt);
 
         if (emailField.getText().toString().equals("") || emailField.getText().toString().equals("")) {
-            loginError.setText("error: fill inputs");
+            loginError.setText("ERROR: FILL INPUTS");
 
             return;
 
@@ -60,12 +60,12 @@ public class Login extends AppCompatActivity {
         user = db.userDao().getUserByEmail(emailField.getText().toString());
 
         if (user == null) {
-            loginError.setText("error: we don't have this email");
+            loginError.setText("ERROR: WE DON'T HAVE THIS EMAIL");
             return;
         }
 
         if (!user.getPassword().equals(passField.getText().toString())) {
-            loginError.setText("error: wrong password");
+            loginError.setText("ERROR: WRONG PASSWORD");
             return;
         }
 
