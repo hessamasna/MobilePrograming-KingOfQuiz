@@ -20,9 +20,12 @@ import com.cip.kingofquiz.api.Api;
 import com.cip.kingofquiz.db.AppDatabase;
 import com.cip.kingofquiz.model.LoggedInUser;
 import com.cip.kingofquiz.model.Question;
+import com.google.android.material.slider.RangeSlider;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.QuestionHolder> {
 
@@ -107,10 +110,18 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
             Question_textView.setText(question.getQuestion_API());
             question_answer.setText("");
 
-            radioButton1.setText(question.getCorrect_answer_API());
-            radioButton2.setText(question.getIncorrect_answers_API().get(0));
-            radioButton3.setText(question.getIncorrect_answers_API().get(1));
-            radioButton4.setText(question.getIncorrect_answers_API().get(2));
+            ArrayList<String> arrayList = new ArrayList<>();
+            arrayList.add(question.getIncorrect_answers_API().get(0));
+            arrayList.add(question.getIncorrect_answers_API().get(1));
+            arrayList.add(question.getIncorrect_answers_API().get(2));
+            Random random = new Random();
+            arrayList.add(random.nextInt(3),question.getCorrect_answer_API());
+
+
+            radioButton1.setText(arrayList.get(0));
+            radioButton2.setText(arrayList.get(1));
+            radioButton3.setText(arrayList.get(2));
+            radioButton4.setText(arrayList.get(3));
         }
     }
 

@@ -44,7 +44,6 @@ public class GameStarter extends AppCompatActivity {
             mvp.setText("\"" + mvpUser.getEmail() + "\" is the Game Master 🫅🤴");
         }
 
-        Log.d("themeeeee", "onCreate: " + LoggedInUser.loggedInUser.getUserGameSetting().getTheme());
         if (LoggedInUser.loggedInUser.getUserGameSetting().getTheme().equals("light")) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         } else {
@@ -133,7 +132,6 @@ public class GameStarter extends AppCompatActivity {
             com.cip.kingofquiz.model.Game game = db.gameDao().getGame(selectedGameID);
 
             while (DAYS.between(LocalDate.parse(game.getDate()), LocalDate.now()) > 5) {
-                Log.d("TAG", "startGame: Fucked Up");
                 selectedGameID = Integer.parseInt(splitGameIds[random.nextInt(splitGameIds.length)]);
                 game = db.gameDao().getGame(selectedGameID);
             }
