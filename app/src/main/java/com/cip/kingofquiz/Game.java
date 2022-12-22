@@ -24,9 +24,7 @@ public class Game extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.question_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        Log.d("getCurrentQuestion", LoggedInUser.loggedInUser.getCurrentQuestion().toString());
-//
-//        QuestionAdapter questionAdapter = new QuestionAdapter(this, Arrays.asList(LoggedInUser.loggedInUser.getCurrentQuestion()),db);
-//        recyclerView.setAdapter(questionAdapter);
+        QuestionAdapter questionAdapter = new QuestionAdapter(this, Arrays.asList(LoggedInUser.loggedInUser.getCurrentQuestion()),db);
+        recyclerView.setAdapter(questionAdapter);
     }
 }
