@@ -14,6 +14,8 @@ import com.cip.kingofquiz.model.GameSetting;
 import com.cip.kingofquiz.model.User;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SignUp extends AppCompatActivity {
 
@@ -29,6 +31,17 @@ public class SignUp extends AppCompatActivity {
         EditText emailField = (EditText) findViewById(R.id.email_signUp);
         EditText passField = (EditText) findViewById(R.id.password_signUp);
         TextView signUpError = (TextView) findViewById(R.id.SignUp_error_txt);
+
+        final String regex = "^(.+)@(.+)\\.(.+)$";
+        final String string = "hessam@yahoo.com";
+
+        final Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
+        final Matcher matcher = pattern.matcher(emailField.getText().toString());
+
+        if (!matcher.find()){
+            signUpError.setText("ERROR: INVALID EMAIL FORMAT");
+            return;
+        }
 
         if (emailField.getText().toString().equals("") || emailField.getText().toString().equals("")){
             signUpError.setText("ERROR: FILL INPUTS");
